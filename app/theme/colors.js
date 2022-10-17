@@ -1,0 +1,76 @@
+export const colors = {
+  brand: {
+    primary: "#db9b7b",
+    secondary: "#202020",
+    muted: "#F6F7FB",
+    shadow: "#161616",
+    darker: "#FFFEFD",
+    lightPrimary: "#F1D086",
+  },
+  ui: {
+    primary: "#262626",
+    secondary: "#757575",
+    tertiary: "#F1F1F1",
+    quaternary: "#000000",
+    disabled: "#DEDEDE",
+    error: "#D0421B",
+    success: "#138000",
+    live: "#0eac29",
+    blue: "#3169D7",
+    red: "#CB2424",
+    lightRed: "#F5D3D3",
+    darkRed: "#381616",
+    lightGreen: "#CFEED6",
+    darkGreen: "#123119",
+  },
+  bg: {
+    primary: "#000000",
+    secondary: "#F1F1F1",
+    dark: "#000000",
+  },
+  text: {
+    primary: "#DDDDDD",
+    secondary: "#777777",
+    disabled: "#9C9C9C",
+    inverse: "#E2E3E7",
+    darkGrey: "#808080",
+    darkGrey2: "#333333",
+    darkGrey3: "#7F6E48",
+    darkGrey4: "#483200",
+    lightGrey: "#3E3E3E",
+    lightGrey2: "#444444",
+    lightGrey3: "#EEEEEE",
+    lightGrey4: "#666666",
+  },
+  gradientColors: {
+    liveLineDark: "#0C9D94",
+    liveLineMedium: "#17B3A9",
+    liveLineLight: "#3CD2C9",
+    upcomingRateDark: "#086DA6",
+    upcomingRateMedium: "#258CC6",
+    upcomingRateLight: "#46ADE7",
+    currentMatchDark: "#B029B3",
+    currentMatchMedium: "#D544D7",
+    currentMatchLight: "#F674F9",
+    recentMatchDark: "#039460",
+    recentMatchMedium: "#16BC80",
+    recentMatchLight: "#25E19D",
+    upcomingMatchDark: "#BD1D17",
+    upcomingMatchMedium: "#DF3435",
+    upcomingMatchLight: "#FA5A5A",
+    pollDark: "#C5640B",
+    pollMedium: "#E08A3A",
+    pollLight: "#FBB06A",
+  },
+  lowOpacityColor: {
+    lightDark: "rgba(255,255,255,0.15)",
+    darkShadowColor: "rgba(0,0,0,0.4)",
+    nodarkShadowColor: "rgba(0,0,0,0.0)",
+  },
+};
+
+// note:
+// dark mode--light mode main color:
+
+// dark=white
+// white-dark

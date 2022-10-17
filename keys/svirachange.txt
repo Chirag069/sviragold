@@ -1,0 +1,15 @@
+Re-enter new password: 
+What is your first and last name?
+  [Unknown]:  svira
+What is the name of your organizational unit?
+  [Unknown]:  svira
+What is the name of your organization?
+  [Unknown]:  svira
+What is the name of your City or Locality?
+  [Unknown]:  surat
+What is the name of your State or Province?
+  [Unknown]:  gujarat
+What is the two-letter country code for this unit?
+  [Unknown]:  IN
+Is CN=svira, OU=svira, O=svira, L=surat, ST=gujarat, C=IN correct?
+  [no]:  yes
