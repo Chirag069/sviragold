@@ -44,6 +44,11 @@ const LikeItem = ({ item, navigation }) => {
   return (
     <View style={{ elevation: 2 }}>
       {likeListIds.find((likeitemid) => likeitemid === item.id) ? (
+        <View style={{  shadowOffset: { width: 0, height: 0 },
+        shadowColor: "black",
+        shadowOpacity: 0.3 ,
+        elevation: 3,
+        backgroundColor: "#0000", }}>
         <View
           style={{
             overflow: "hidden",
@@ -51,6 +56,7 @@ const LikeItem = ({ item, navigation }) => {
             marginTop: vsc(10),
             marginHorizontal: sc(10),
             elevation: 4,
+            
           }}
         >
           <Touchable
@@ -71,7 +77,7 @@ const LikeItem = ({ item, navigation }) => {
                     style={{
                       borderTopLeftRadius: vsc(5),
                       width: Dimensions.get("window").width * 0.46,
-                      height: Dimensions.get("window").width * 0.4,
+                      height: Dimensions.get("window").width * 0.45,
                       resizeMode: "stretch",
                     }}
                     source={
@@ -184,6 +190,7 @@ const LikeItem = ({ item, navigation }) => {
               </View>
             </View>
           </Touchable>
+        </View>
         </View>
       ) : null}
     </View>

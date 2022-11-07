@@ -313,6 +313,11 @@ const ProductItemRowHorizotal = ({ item, Touchable, navigation }) => {
           borderRadius: sc(5),
           marginTop: vsc(10),
           marginHorizontal: sc(7),
+          shadowOffset: { width: 0, height: 5 },
+          shadowColor: "black",
+          shadowOpacity: 0.3,
+          elevation: 3,
+          backgroundColor: "#0000",
         }}
       >
         <Touchable

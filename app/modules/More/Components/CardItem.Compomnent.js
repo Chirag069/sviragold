@@ -376,22 +376,14 @@ const CardItem = ({ item, navigation }) => {
           </View>
         </Pressable>
       </Modal>
+      <View style={{  shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 0.3 ,
+          elevation: 3,
+          backgroundColor: "#0000", }}>
       <View
         style={{
-          ...Platform.select({
-            android: {
-              elevation: 3,
-            },
-            ios: {
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.2,
-              shadowRadius: 1.41,
-            },
-          }),
+         
           marginHorizontal: sc(10),
           overflow: "hidden",
           borderRadius: sc(5),
@@ -712,6 +704,7 @@ const CardItem = ({ item, navigation }) => {
             </View>
           </View>
         </View>
+      </View>
       </View>
     </>
   );

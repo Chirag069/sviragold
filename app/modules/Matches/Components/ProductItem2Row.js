@@ -308,15 +308,26 @@ const ProductItem2Row = ({ item, Touchable, navigation }) => {
           </View>
         </Pressable>
       </Modal>
+      <View style={{   
+        shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 0.3 ,
+          elevation: 3,
+          backgroundColor: "#0000",}}>
       <View
         style={{
           overflow: "hidden",
           borderRadius: sc(5),
           marginTop: vsc(10),
           elevation: 4,
+          shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 1 ,
+          backgroundColor: "#0000",
         }}
       >
         <Touchable
+        
           underlayColor="rgba(252,186,3,0.9)"
           background={TouchableNativeFeedback.Ripple("#ECECEC")}
           onPress={() => navigation.navigate("Polls", { item: item })}
@@ -324,6 +335,7 @@ const ProductItem2Row = ({ item, Touchable, navigation }) => {
           <View
             style={{
               flex: 0.46,
+              elevation: 3,
               borderRadius: sc(5),
               backgroundColor: "#FFFFFF",
             }}
@@ -336,6 +348,7 @@ const ProductItem2Row = ({ item, Touchable, navigation }) => {
                 backgroundColor: "#FFFFFF",
                 justifyContent: "space-between",
                 alignItems: "center",
+                
               }}
             >
               <View>
@@ -561,6 +574,7 @@ const ProductItem2Row = ({ item, Touchable, navigation }) => {
             {/*  end item inpuit - + */}
           </View>
         </Touchable>
+      </View>
       </View>
     </>
   );

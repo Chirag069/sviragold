@@ -308,12 +308,19 @@ const ProductItem2LongRow = ({ item, Touchable, navigation }) => {
           </View>
         </Pressable>
       </Modal>
+      <View style={{   
+        shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 0.3 ,
+          elevation: 3,
+          backgroundColor: "#0000",}}>
       <View
         style={{
           overflow: "hidden",
           borderRadius: sc(5),
           marginTop: vsc(10),
           elevation: 4,
+      
         }}
       >
         <Touchable
@@ -561,6 +568,7 @@ const ProductItem2LongRow = ({ item, Touchable, navigation }) => {
             {/*  end item inpuit - + */}
           </View>
         </Touchable>
+      </View>
       </View>
     </>
   );

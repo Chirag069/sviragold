@@ -182,7 +182,10 @@ const ProductItemRowSingal = ({ item, Touchable, navigation }) => {
           // onPress={() => {
           //   setModalVisible(!modalVisible);
           // }}
-          style={{ backgroundColor: "rgba(0,0,0,0.6)", flex: 1 }}
+          style={{
+            backgroundColor: "rgba(0,0,0,0.6)",
+            flex: 1,
+          }}
         >
           <View
             style={{
@@ -193,9 +196,6 @@ const ProductItemRowSingal = ({ item, Touchable, navigation }) => {
           >
             <View
               style={{
-         
-
-                
                 height: vsc(180),
                 backgroundColor: "white",
                 borderRadius: sc(15),
@@ -321,7 +321,11 @@ const ProductItemRowSingal = ({ item, Touchable, navigation }) => {
           borderRadius: sc(5),
           marginTop: vsc(10),
           marginHorizontal: sc(7),
-          elevation: 4,
+          shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 0.3 ,
+          elevation: 3,
+          backgroundColor: "#0000", 
         }}
       >
         <Touchable

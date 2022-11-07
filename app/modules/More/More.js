@@ -129,6 +129,7 @@ const More = ({ navigation }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          
         }}
       >
         <View>

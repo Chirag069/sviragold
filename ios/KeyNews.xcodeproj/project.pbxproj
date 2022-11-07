@@ -497,7 +497,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeyNews.app/KeyNews";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeyNews.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeyNews";
 			};
 			name = Debug;
 		};
@@ -521,7 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeyNews.app/KeyNews";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeyNews.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeyNews";
 			};
 			name = Release;
 		};

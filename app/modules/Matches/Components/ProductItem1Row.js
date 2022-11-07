@@ -322,6 +322,12 @@ const ProductItem1Row = ({ item, Touchable, navigation }) => {
           </View>
         </Pressable>
       </Modal>
+      <View style={{   
+        shadowOffset: { width: 0, height: 0 },
+          shadowColor: "black",
+          shadowOpacity: 0.3 ,
+          elevation: 3,
+          backgroundColor: "#0000",}}>
       <View
         style={{
           marginHorizontal: sc(10),
@@ -329,6 +335,7 @@ const ProductItem1Row = ({ item, Touchable, navigation }) => {
           borderRadius: sc(5),
           marginTop: vsc(10),
           elevation: 3,
+       
         }}
       >
         <Touchable
@@ -341,6 +348,7 @@ const ProductItem1Row = ({ item, Touchable, navigation }) => {
               borderRadius: sc(5),
               backgroundColor: "#FFFFFF",
               flexDirection: "row",
+              
             }}
           >
             <View style={{ position: "relative", flex: 0.5 }}>
@@ -536,6 +544,7 @@ const ProductItem1Row = ({ item, Touchable, navigation }) => {
             </View>
           </View>
         </Touchable>
+      </View>
       </View>
     </>
   );
