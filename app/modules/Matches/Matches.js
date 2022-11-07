@@ -28,6 +28,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { SafeView } from "./Matches.Style.js";
 
 import AviraHeader from "../../components/aviraHeader.Component.js";
+import SeachModal from "../../components/SeachModal.Component.js";
 
 import { getProductsAction } from "../../redux/actions/productActions.js";
 import { GuestUserModalShowAction } from "../../redux/actions/authActons";
@@ -295,6 +296,7 @@ const Matches = ({ navigation }) => {
       </Modal>
 
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
       <Modal
         onBackdropPress={() => {
           setShow((x) => !x);

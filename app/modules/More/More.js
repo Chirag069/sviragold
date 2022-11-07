@@ -12,11 +12,13 @@ import {
   Dimensions,
   ActivityIndicator,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useSelector, useDispatch } from "react-redux";
 import AviraHeader from "../../components/aviraHeader.Component.js";
+import SeachModal from "../../components/SeachModal.Component.js";
 import {
   getCardItemsAction,
   placeOrderCardItemAction,
@@ -94,8 +96,9 @@ const More = ({ navigation }) => {
   // console.log(cardItems);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
 
       <RemarkModal />
       <SIzeSelectionModal />
@@ -139,26 +142,29 @@ const More = ({ navigation }) => {
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           {Array.isArray(cardItems) && cardItems.length > 0 ? (
-            <TouchableOpacity onPress={pressOrderCardAllItems}>
-              <Text
-                style={{
-                  color: "#db9b7b",
-                  fontWeight: "normal",
-                  fontSize: vsc(19),
+            <>
+              <TouchableOpacity onPress={pressOrderCardAllItems}>
+                <Text
+                  style={{
+                    color: "#db9b7b",
+                    fontWeight: "normal",
+                    fontSize: vsc(19),
+                  }}
+                >
+                  Place Order
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("CardSetting");
                 }}
+                style={{ marginLeft: vsc(15) }}
               >
-                Place Order
-              </Text>
-            </TouchableOpacity>
+                <AntDesign name="setting" color="#db9b7b" size={vsc(22)} />
+              </TouchableOpacity>
+            </>
           ) : null}
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("CardSetting");
-            }}
-            style={{ marginLeft: vsc(15) }}
-          >
-            <AntDesign name="setting" color="#db9b7b" size={vsc(22)} />
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -238,7 +244,7 @@ const More = ({ navigation }) => {
           />
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

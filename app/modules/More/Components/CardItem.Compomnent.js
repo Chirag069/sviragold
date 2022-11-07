@@ -1,5 +1,5 @@
 /* eslint-disable radix */
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import {
   TouchableNativeFeedback,
   Platform,
@@ -11,6 +11,8 @@ import {
   Image,
   Alert,
   Dimensions,
+  Modal,
+  Pressable,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import NetInfo from "@react-native-community/netinfo";
@@ -24,19 +26,86 @@ import {
   setRemarkModalValues,
   setSizeModalValues,
   setGroupModalValues,
+  getCardItemsAction,
 } from "../../../redux/actions/productActions.js";
 
 import { sc, vsc, msc } from "../../../appConstants/Utils";
 
+import { RadioButton } from "react-native-paper";
+import CustomButton from "../../../Custom/CustomButton.js";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { red100 } from "react-native-paper/lib/typescript/styles/themes/v2/colors.js";
+
 const CardItem = ({ item, navigation }) => {
   const dispatch = useDispatch();
-
+  const { userToken } = useSelector((state) => state.authState);
   const { sizeListItems, groupListItems, cardItems } = useSelector(
     (state) => state.productState
   );
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [addtocartsubitem, setAddtocartsubitem] = useState([]);
+
+  const itemsubdata = cardItems.find((values) => values.id === item.id);
+  const itemsubdatasingal = cardItems.find((values) => values.id == item.id);
+
+  // const itemsubdatasingle = itemsubdata.item_sub_data_single;
+
+  let itemsub = itemsubdata.item_sub_data + "";
+  var itemsubcat = itemsub.split(",");
+
   const Touchable =
     Platform.OS === "iOS" ? TouchableHighlight : TouchableNativeFeedback;
+
+  const addtocartmodel = () => {
+    setAddtocartsubitem(item?.item_sub_data);
+    if (item.item_sub_data?.length > 1) {
+      setModalVisible(true);
+    } else {
+      addToCardItemFun();
+    }
+  };
+
+  const addToCardItemFun = () => {
+    if (userToken) {
+      NetInfo.fetch().then((state) => {
+        if (state.isConnected) {
+          dispatch(
+            addCardItemsAction(
+              item.id,
+              0,
+              "*",
+              item.items_group_id ? item.items_group_id : null,
+              item.size_id
+                ? item.size_id
+                : Array.isArray(sizeListItems) &&
+                  sizeListItems.length > 0 &&
+                  sizeListItems[0] &&
+                  sizeListItems[0].id
+                ? sizeListItems[0].id
+                : null,
+              null,
+              "addtocart",
+              checked
+            )
+          );
+          dispatch(getCardItemsAction());
+        } else {
+          Toast.show({
+            text1: "Check your Internet Connection",
+            visibilityTime: 3000,
+            autoHide: true,
+            position: "bottom",
+            type: "error",
+          });
+        }
+      });
+    } else {
+      dispatch(GuestUserModalShowAction(true));
+    }
+
+    // add to card application
+  };
 
   const IncementCardItemValueFun = () => {
     NetInfo.fetch().then((state) => {
@@ -143,6 +212,7 @@ const CardItem = ({ item, navigation }) => {
   const sizeIdValueObj = sizeListItems.find(
     (values) => values.id === item.size_id
   );
+
   const sizeIdValueValue =
     sizeIdValueObj && sizeIdValueObj.size ? sizeIdValueObj.size : null;
 
@@ -152,10 +222,176 @@ const CardItem = ({ item, navigation }) => {
   const groupIdValueValue =
     groupIdValueObj && groupIdValueObj.name ? groupIdValueObj.name : null;
 
+  const subcategoryobj = cardItems.find((values) => values.id === item.id);
+
+  const [checked, setChecked] = React.useState(
+    subcategoryobj.item_sub_data_single
+  );
+
   return (
     <>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <Pressable
+          // onPress={() => {
+          //   setModalVisible(!modalVisible);
+          // }}
+          style={{ backgroundColor: "rgba(0,0,0,0.6)", flex: 1 }}
+        >
+          <View
+            style={{
+              alignItems: "center",
+              marginTop: "auto",
+              marginBottom: "auto",
+            }}
+          >
+            <View
+              style={{
+                height: vsc(180),
+                backgroundColor: "white",
+                borderRadius: sc(15),
+                paddingHorizontal: sc(10),
+                paddingVertical: vsc(20),
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: sc(2),
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 4,
+                elevation: 5,
+              }}
+            >
+              <View style={{ alignItems: "center" }}>
+                <Text style={{ fontSize: vsc(20), marginBottom: vsc(10) }}>
+                  Sub Category{" "}
+                </Text>
+
+                <FlatList
+                  // ref={(ref) => {
+                  //   flatListRef = ref;
+                  // }}
+                  contentContainerStyle={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                  }}
+                  data={itemsubcat}
+                  horizontal={false}
+                  keyExtractor={(item) => {
+                    return item.id;
+                  }}
+                  renderItem={({ item }) => {
+                    const index = item;
+
+                    return (
+                      <View
+                        style={{
+                          marginVertical: vsc(5),
+                          marginHorizontal: sc(5),
+                          flexDirection: "row",
+
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{}}>
+                          <RadioButton
+                            value="first"
+                            color="#db9b7b"
+                            uncheckedColor="grey"
+                            status={checked === index ? "checked" : "unchecked"}
+                            onPress={() => setChecked(index)}
+                          />
+                        </View>
+                        <Text
+                          style={{
+                            // borderWidth: sc(1),
+                            // borderColor: "#db9b7b",
+
+                            backgroundColor: "white",
+                            color: "#db9b7b",
+                            paddingHorizontal: sc(5),
+                            paddingVertical: vsc(5),
+                            // borderRadius: sc(5),
+                            fontSize: sc(22),
+                          }}
+                        >
+                          {item}
+                        </Text>
+                      </View>
+                    );
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: "row",
+                    
+                  }}
+                >
+                  <View style={{ marginRight: sc(20) }}>
+                    <CustomButton
+                      borderWidth={sc(1)}
+                      borderColor={"#c79248"}
+                      buttoncolor={"white"}
+                      buttonwidth={sc(150)}
+                      buttonheight={vsc(35)}
+                      text={"CANCEL"}
+                      fontcolor={"#c79248"}
+                      fontSize={sc(17)}
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                      }}
+                    />
+                  </View>
+                  <CustomButton
+                    buttoncolor={"#db9b7b"}
+                    buttonwidth={sc(150)}
+                    buttonheight={vsc(35)}
+                    text={"ADD TO CART"}
+                    fontcolor={"white"}
+                    fontSize={sc(17)}
+                    onPress={() => {
+                      if (checked == null) {
+                        Toast.show({
+                          text1: "Please Select Item",
+                          visibilityTime: 3000,
+                          autoHide: true,
+                          position: "top",
+                          type: "error",
+                        });
+                      } else {
+                        addToCardItemFun(), setModalVisible(!modalVisible);
+                      }
+                    }}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </Pressable>
+      </Modal>
       <View
         style={{
+          ...Platform.select({
+            android: {
+              elevation: 3,
+            },
+            ios: {
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+            },
+          }),
           marginHorizontal: sc(10),
           overflow: "hidden",
           borderRadius: sc(5),
@@ -163,11 +399,10 @@ const CardItem = ({ item, navigation }) => {
           elevation: 3,
         }}
       >
-        <TouchableNativeFeedback
+        <View
           onPress={() => navigation.navigate("Polls", { item: item })}
           underlayColor="rgba(252,186,3,0.9)"
           background={TouchableNativeFeedback.Ripple("rgba(252,186,3,0.9)")}
-          style={{}}
         >
           <View
             style={{
@@ -182,7 +417,7 @@ const CardItem = ({ item, navigation }) => {
                   style={{
                     borderTopLeftRadius: sc(5),
                     width: Dimensions.get("window").width * 0.46,
-                    height: Dimensions.get("window").width * 0.46,
+                    height: Dimensions.get("window").width * 0.48,
                     resizeMode: "stretch",
                   }}
                   source={
@@ -197,8 +432,8 @@ const CardItem = ({ item, navigation }) => {
             </View>
 
             <View style={{ flex: 0.5, justifyContent: "space-between" }}>
-              <View style={{ marginTop: vsc(5) }}>
-                <View>
+              <View style={{ marginTop: vsc(5), flex: 1 }}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Text style={{ fontSize: vsc(16), color: "#000000" }}>
                     {item.design_name
                       ? item.design_name
@@ -206,7 +441,18 @@ const CardItem = ({ item, navigation }) => {
                       ? item.item
                       : ""}
                   </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Polls", { item: item })}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: sc(10),
+                      marginTop: vsc(3),
+                    }}
+                  >
+                    <SimpleLineIcons name="size-fullscreen" size={vsc(20)} />
+                  </TouchableOpacity>
                 </View>
+
                 <View style={{ marginTop: vsc(5) }}>
                   <Text style={{ fontSize: vsc(16), color: "#db9b7b" }}>
                     {item.item_category ? item.item_category : ""}
@@ -220,7 +466,7 @@ const CardItem = ({ item, navigation }) => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  marginTop: vsc(5),
+                  marginTop: vsc(-20),
                 }}
               >
                 <View style={{}}>
@@ -295,28 +541,36 @@ const CardItem = ({ item, navigation }) => {
               {/* remark */}
 
               {/* {Sub Category} */}
-              <TouchableOpacity
-                // onPress={setSizeItemValuePress}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginTop: vsc(5),
-                }}
-              >
-                <View style={{}}>
-                  <Text style={{ color: "#000000", fontSize: vsc(14) }}>
-                    Sub Category :
-                  </Text>
-                </View>
-                <View>
-                  <Text style={{ color: "#808080", fontSize: vsc(14) }}>
-                    {cardItems[0].item_sub_data}
-                  </Text>
-                </View>
-                <View style={{ marginLeft: vsc(2) }}>
-                  <AntDesign name="caretdown" color="#808080" size={vsc(12)} />
-                </View>
-              </TouchableOpacity>
+              {subcategoryobj?.item_sub_data_single?.length == 0 ? (
+                <View />
+              ) : (
+                <TouchableOpacity
+                  onPress={addtocartmodel}
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginBottom: vsc(5),
+                  }}
+                >
+                  <View style={{}}>
+                    <Text style={{ color: "#000000", fontSize: vsc(14) }}>
+                      Sub Category :
+                    </Text>
+                  </View>
+                  <View>
+                    <Text style={{ color: "#808080", fontSize: vsc(14) }}>
+                      {subcategoryobj.item_sub_data_single}
+                    </Text>
+                  </View>
+                  <View style={{ marginLeft: vsc(2) }}>
+                    <AntDesign
+                      name="caretdown"
+                      color="#808080"
+                      size={vsc(12)}
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
 
               {/* sub Category end */}
 
@@ -457,7 +711,7 @@ const CardItem = ({ item, navigation }) => {
               <View style={{ marginVertical: vsc(3) }} />
             </View>
           </View>
-        </TouchableNativeFeedback>
+        </View>
       </View>
     </>
   );

@@ -193,6 +193,9 @@ const ProductItemRowSingal = ({ item, Touchable, navigation }) => {
           >
             <View
               style={{
+         
+
+                
                 height: vsc(180),
                 backgroundColor: "white",
                 borderRadius: sc(15),

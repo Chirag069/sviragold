@@ -10,6 +10,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  SafeAreaView,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import FastImage from "react-native-fast-image";
@@ -80,8 +81,8 @@ const Home = ({ navigation }) => {
   );
 
   return (
-    <SafeView bgColor={"#FFFEFD"}>
-      <StatusBar backgroundColor={"#db9b7b"} barStyle="light-content" />
+    <SafeAreaView  >
+      <StatusBar backgroundColor={"#db9b7b"} barStyle='dark-content' />
       {/* end---modal */}
       <AviraHeader navigation={navigation} />
       <UpdateAppModal />
@@ -286,7 +287,7 @@ const Home = ({ navigation }) => {
         <SocialLinks />
         <AviraInfo />
       </ScrollView>
-    </SafeView>
+    </SafeAreaView>
   );
 };
 

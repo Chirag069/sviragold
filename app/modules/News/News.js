@@ -12,6 +12,7 @@ import { SafeView } from "./News.Style.js";
 import { colors } from "../../theme/colors.js";
 import { Button } from "react-native-paper";
 import AviraHeader from "../../components/aviraHeader.Component.js";
+import SeachModal from "../../components/SeachModal.Component.js";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import {
   setGenderCheckValue,
@@ -63,6 +64,7 @@ const News = ({ navigation }) => {
   return (
     <SafeView bgColor={"#FFFEFD"}>
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
 
       <View style={{}}>
         {/*end0---- filter header-----3/7 */}
@@ -578,8 +580,9 @@ const News = ({ navigation }) => {
               borderRadius: vsc(5),
               marginHorizontal: vsc(5),
               marginVertical: vsc(3),
+
             }}
-            color="#dddddd"
+            buttonColor="#dddddd"
             mode="contained"
             onPress={CLEARALL}
           >
@@ -598,7 +601,7 @@ const News = ({ navigation }) => {
               marginHorizontal: vsc(5),
               marginVertical: vsc(3),
             }}
-            color="#db9b7b"
+            buttonColor="#db9b7b"
             mode="contained"
             onPress={ApplyFilters}
           >

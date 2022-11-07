@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, SafeAreaView, SafeAreaViewBase } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -38,12 +38,14 @@ const TabNavigation = () => {
 
   function MyTabBar({ state, descriptors, navigation }) {
     return (
-      <View
+      <SafeAreaView style={{backgroundColor:'#db9b7b'}}>
+      <View 
         style={{
           flexDirection: "row",
           backgroundColor: "#db9b7b",
           justifyContent: "center",
           alignItems: "center",
+
         }}
       >
         {state.routes.map((route, index) => {
@@ -278,6 +280,7 @@ const TabNavigation = () => {
           return <>{setItenValue(label, isFocused)}</>;
         })}
       </View>
+      </SafeAreaView>
     );
   }
 

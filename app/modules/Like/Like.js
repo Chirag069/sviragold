@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { FlatList, View, Text, Image, ActivityIndicator } from "react-native";
+import { FlatList, View, Text, Image, ActivityIndicator, SafeAreaView } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import { useSelector, useDispatch } from "react-redux";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import { getLikeCardItemsAction } from "../../redux/actions/productActions.js";
 import Spinner from "react-native-loading-spinner-overlay";
+import SeachModal from "../../components/SeachModal.Component.js";
 
 import LikeItem from "./Components/LikeItem.Compomnent.js";
 
@@ -37,8 +38,10 @@ const Like = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+        
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
 
       <Spinner
         visible={likeItemServerLoading}
@@ -136,7 +139,8 @@ const Like = ({ navigation }) => {
           />
         </>
       )}
-    </View>
+    
+    </SafeAreaView>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   TouchableNativeFeedback,
+  SafeAreaView,
 } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Avatar } from "react-native-paper";
@@ -322,6 +323,7 @@ export default function CustomDrawerContent(props) {
           backgroundColor: "#DDDDDD",
         }}
       />
+      <SafeAreaView>
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple("#db9b7b")}
         onPress={() => {
@@ -361,6 +363,7 @@ export default function CustomDrawerContent(props) {
           </View>
         </View>
       </TouchableNativeFeedback>
+      </SafeAreaView>
       <View
         style={{
           marginBottom: vsc(3),

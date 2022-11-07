@@ -190,7 +190,7 @@ export const getProductsAction = () => (dispatch, getState) => {
       if (userToken) {
         var config = {
           method: "post",
-          url: "http://rd.ragingdevelopers.com/svira/svira1api/items",
+          url: "https://rd.ragingdevelopers.com/svira/svira1api/items",
           headers: {
             "If-Range": userToken,
             "Content-Type": "application/json",
@@ -200,7 +200,7 @@ export const getProductsAction = () => (dispatch, getState) => {
       } else {
         var config = {
           method: "post",
-          url: "http://rd.ragingdevelopers.com/svira/svira2api/items/item_config",
+          url: "https://rd.ragingdevelopers.com/svira/svira2api/items/item_config",
           headers: {
             Authorization: "Bearer xA7uZ1cH8oM7xX0qX2xG5aB7cY6xF2yE",
             "Content-Type": "application/json",
@@ -278,7 +278,7 @@ export const filterTypesAction = () => async (dispatch, getState) => {
     if (userToken) {
       var config = {
         method: "post",
-        url: "http://rd.ragingdevelopers.com/svira/svira1api/filter",
+        url: "https://rd.ragingdevelopers.com/svira/svira1api/filter",
         headers: {
           "If-Range": userToken,
           "Content-Type": "application/json",
@@ -288,7 +288,7 @@ export const filterTypesAction = () => async (dispatch, getState) => {
     } else {
       var config = {
         method: "get",
-        url: "http://rd.ragingdevelopers.com/svira/svira2api/filter",
+        url: "https://rd.ragingdevelopers.com/svira/svira2api/filter",
         headers: {
           Authorization: "Bearer xA7uZ1cH8oM7xX0qX2xG5aB7cY6xF2yE",
         },
@@ -372,7 +372,7 @@ export const getCardItemsAction = () => async (dispatch, getState) => {
 
     var config = {
       method: "post",
-      url: "http://rd.ragingdevelopers.com/svira/svira1api/home/cart",
+      url: "https://rd.ragingdevelopers.com/svira/svira1api/home/cart",
       headers: {
         "If-Range": userToken,
         "Content-Type": "application/json",
@@ -488,7 +488,7 @@ export const addCardItemsAction =
 
       var config = {
         method: "post",
-        url: "http://rd.ragingdevelopers.com/svira/svira1api/home/update_cart",
+        url: "https://rd.ragingdevelopers.com/svira/svira1api/home/update_cart",
         headers: {
           "If-Range": userToken,
           "Content-Type": "application/json",
@@ -624,7 +624,7 @@ export const RemoveCardItemsAction =
 
       var config = {
         method: "post",
-        url: "http://rd.ragingdevelopers.com/svira/svira1api/home/remove_cart",
+        url: "https://rd.ragingdevelopers.com/svira/svira1api/home/remove_cart",
         headers: {
           "If-Range": userToken,
           "Content-Type": "application/json",
@@ -714,7 +714,7 @@ export const getLikeCardItemsAction = () => async (dispatch, getState) => {
 
     var config = {
       method: "post",
-      url: "http://rd.ragingdevelopers.com/svira/svira1api/home/wishlist",
+      url: "https://rd.ragingdevelopers.com/svira/svira1api/home/wishlist",
       headers: {
         "If-Range": userToken,
         "Content-Type": "application/json",
@@ -788,8 +788,8 @@ export const addRemoveLikeItemsAction =
 
       const likeUnlikeUrl =
         type === "like"
-          ? "http://rd.ragingdevelopers.com/svira/svira1api/home/add_wishlist"
-          : "http://rd.ragingdevelopers.com/svira/svira1api/home/remove_wishlist";
+          ? "https://rd.ragingdevelopers.com/svira/svira1api/home/add_wishlist"
+          : "https://rd.ragingdevelopers.com/svira/svira1api/home/remove_wishlist";
 
       var config = {
         method: "post",
@@ -871,7 +871,7 @@ export const getOrderListAction = () => async (dispatch, getState) => {
 
     var config = {
       method: "post",
-      url: "http://rd.ragingdevelopers.com/svira/svira1api/order/list_order",
+      url: "https://rd.ragingdevelopers.com/svira/svira1api/order/list_order",
       headers: {
         "If-Range": userToken,
         "Content-Type": "application/json",
@@ -946,7 +946,7 @@ export const placeOrderCardItemAction =
 
       var config = {
         method: "post",
-        url: "http://rd.ragingdevelopers.com/svira/svira1api/order",
+        url: "https://rd.ragingdevelopers.com/svira/svira1api/order",
         headers: {
           "If-Range": userToken,
           "Content-Type": "application/json",
@@ -1036,7 +1036,7 @@ export const editOrderItemAction =
 
       var config = {
         method: "post",
-        url: `http://rd.ragingdevelopers.com/svira/svira1api/order/edit_order/${orderId}`,
+        url: `https://rd.ragingdevelopers.com/svira/svira1api/order/edit_order/${orderId}`,
         headers: {
           "If-Range": userToken,
           "Content-Type": "application/json",
@@ -1144,7 +1144,7 @@ export const getGroupAndSizeId = () => async (dispatch, getState) => {
 
     var config = {
       method: "post",
-      url: "http://rd.ragingdevelopers.com/svira/svira1api/home/sizeandgroup",
+      url: "https://rd.ragingdevelopers.com/svira/svira1api/home/sizeandgroup",
       headers: {
         "If-Range": userToken,
         "Content-Type": "application/json",
@@ -1207,7 +1207,7 @@ export const getOrderWebViewPdfData = (orderId) => (dispatch, getState) => {
 
     var config = {
       method: "post",
-      url: `http://rd.ragingdevelopers.com/svira/svira1api/order/order_view/${orderId}`,
+      url: `https://rd.ragingdevelopers.com/svira/svira1api/order/order_view/${orderId}`,
       headers: {
         "If-Range": userToken,
         "Content-Type": "application/json",

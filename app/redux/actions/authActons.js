@@ -51,7 +51,7 @@ export const signInAction =
 
       var config = {
         method: "post",
-        url: "http://rd.ragingdevelopers.com/svira/svira1api/login",
+        url: "https://rd.ragingdevelopers.com/svira/svira1api/login",
         headers: {
           "If-Match": "LOGIN",
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const signInAction =
       };
 
       const { data } = await axios.post(
-        "http://rd.ragingdevelopers.com/svira/svira1api/login",
+        "https://rd.ragingdevelopers.com/svira/svira1api/login",
         loginValus,
         config
       );
@@ -78,7 +78,7 @@ export const signInAction =
       };
 
       fetch(
-        "http://rd.ragingdevelopers.com/svira/svira1api/login",
+        "https://rd.ragingdevelopers.com/svira/svira1api/login",
         requestOptions
       )
         .then((response) => response.json())
@@ -171,11 +171,13 @@ export const signInAction =
           }
         })
         .catch((error) => {
+          alert(error + '');
           dispatch({
             type: LOGIN_ERROR,
           });
         });
     } catch (err) {
+      alert('error 2 login')
       dispatch({
         type: LOGIN_ERROR,
       });

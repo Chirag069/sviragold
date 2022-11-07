@@ -6,12 +6,13 @@ import {
   Dimensions,
   TouchableOpacity,
   PermissionsAndroid,
+  Platform,
   Alert,
   Linking,
   ToastAndroid,
 } from "react-native";
 import Pdf from "react-native-pdf";
-import RNFetchBlob from "rn-fetch-blob";
+import RNFetchBlob from "react-native-blob-util";
 import Share from "react-native-share";
 
 import { useSelector } from "react-redux";
@@ -40,6 +41,7 @@ const PdfViewPage = ({ navigation, route }) => {
 
   useEffect(() => {
     (async () => {
+      if(Platform.OS === "android"){
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
@@ -53,6 +55,9 @@ const PdfViewPage = ({ navigation, route }) => {
           );
         }
       } catch (err) {}
+    }
+
+
     })();
   }, []);
 
