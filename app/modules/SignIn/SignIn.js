@@ -23,8 +23,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setBgColor } from "../../redux/actions/themeActions.js";
 import Spinner from "react-native-loading-spinner-overlay";
 import { signInAction } from "../../redux/actions/authActons.js";
-
 import { sc, vsc, msc } from "../../appConstants/Utils";
+
+
+
 
 
 const singInCheck = yup.object({
@@ -52,7 +54,7 @@ const SignIn = ({ navigation }) => {
 
   return (
     <>
-      <StatusBar backgroundColor={"#FFFEFD"} barStyle="light-content" />
+      <StatusBar  backgroundColor={"#FFFEFD"} barStyle="light-content" />
 
       <Spinner
         visible={LoginInLoading}

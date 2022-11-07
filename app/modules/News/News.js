@@ -13,6 +13,7 @@ import { colors } from "../../theme/colors.js";
 import { Button } from "react-native-paper";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import {
   setGenderCheckValue,
@@ -65,6 +66,7 @@ const News = ({ navigation }) => {
     <SafeView bgColor={"#FFFEFD"}>
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
 
       <View style={{}}>
         {/*end0---- filter header-----3/7 */}

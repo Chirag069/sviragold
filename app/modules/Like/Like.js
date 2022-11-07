@@ -8,6 +8,7 @@ import AviraHeader from "../../components/aviraHeader.Component.js";
 import { getLikeCardItemsAction } from "../../redux/actions/productActions.js";
 import Spinner from "react-native-loading-spinner-overlay";
 import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 
 import LikeItem from "./Components/LikeItem.Compomnent.js";
 
@@ -42,6 +43,7 @@ const Like = ({ navigation }) => {
         
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
 
       <Spinner
         visible={likeItemServerLoading}

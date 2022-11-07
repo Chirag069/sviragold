@@ -46,6 +46,7 @@ export default function CustomDrawerContent(props) {
         <View
           style={{
             paddingHorizontal: sc(5),
+ marginTop: vsc(-5),
             marginTop: vsc(-5),
             backgroundColor: "#FFFEFD",
           }}

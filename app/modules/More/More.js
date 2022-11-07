@@ -19,6 +19,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { useSelector, useDispatch } from "react-redux";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 import {
   getCardItemsAction,
   placeOrderCardItemAction,
@@ -99,6 +100,7 @@ const More = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
 
       <RemarkModal />
       <SIzeSelectionModal />

@@ -27,6 +27,7 @@ import { SafeArea } from "./Poll.Style.js";
 import { useSelector, useDispatch } from "react-redux";
 
 import AviraHeader from "../../components/aviraHeader.Component.js";
+import SeachModal from "../../components/SeachModal.Component.js";
 
 import {
   addCardItemsAction,
@@ -343,6 +344,7 @@ const Polls = ({ navigation, route }) => {
   return (
     <SafeArea bgColor={"#FFFEFD"}>
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
       <Spinner
         visible={
           incAndDecCardServerLoading || likeItemServerLoading || stateLoading

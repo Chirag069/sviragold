@@ -16,6 +16,8 @@ import { SafeArea } from "./Score.Style.js";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { sc, vsc, msc } from "../../appConstants/Utils";
+import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 
 const Score = ({ navigation }) => {
   const {
@@ -53,6 +55,8 @@ const Score = ({ navigation }) => {
   return (
     <SafeArea bgColor={"#FFFEFD"}>
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
 
       <View
         style={{

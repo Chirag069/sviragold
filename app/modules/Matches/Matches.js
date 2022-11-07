@@ -29,6 +29,7 @@ import { SafeView } from "./Matches.Style.js";
 
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 
 import { getProductsAction } from "../../redux/actions/productActions.js";
 import { GuestUserModalShowAction } from "../../redux/actions/authActons";
@@ -297,6 +298,7 @@ const Matches = ({ navigation }) => {
 
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
       <Modal
         onBackdropPress={() => {
           setShow((x) => !x);

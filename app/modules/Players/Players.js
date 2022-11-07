@@ -17,6 +17,8 @@ import { getOrderListAction } from "../../redux/actions/productActions.js";
 
 import { setBgColor } from "../../redux/actions/themeActions.js";
 import AviraHeader from "../../components/aviraHeader.Component.js";
+import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import OrderItem from "../Players/Components/OrderItem.Component.js";
@@ -43,6 +45,8 @@ const Players = ({ navigation }) => {
   return (
     <SafeArea bgColor={"#FFFEFD"}>
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
       <Spinner
         visible={serverEditOrderServerLoadingError}
         textContent={"Loading..."}
