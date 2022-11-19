@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import Feather from "react-native-vector-icons/Feather";
@@ -569,7 +570,7 @@ const News = ({ navigation }) => {
         style={{
           position: "absolute",
           right: 0,
-          bottom: 0,
+          bottom: Platform.OS === "ios" ? 15 : 0,
           flexDirection: "row",
           backgroundColor: "#F6F7FB",
           borderTopWidth: vsc(1),
@@ -578,12 +579,15 @@ const News = ({ navigation }) => {
       >
         <View style={{ width: Dimensions.get("window").width / 2 }}>
           <Button
-            labelStyle={{ color: "#db9b7b", paddingVertical: vsc(3), fontSize: vsc(14)}}
+            labelStyle={{
+              color: "#db9b7b",
+              paddingVertical: vsc(3),
+              fontSize: vsc(14),
+            }}
             style={{
               borderRadius: vsc(5),
               marginHorizontal: vsc(5),
               marginVertical: vsc(3),
-
             }}
             buttonColor="#dddddd"
             mode="contained"
@@ -597,7 +601,7 @@ const News = ({ navigation }) => {
             labelStyle={{
               color: "#FFFFFF",
               paddingVertical: vsc(3),
-              fontSize: vsc(14)
+              fontSize: vsc(14),
             }}
             style={{
               borderRadius: vsc(5),
