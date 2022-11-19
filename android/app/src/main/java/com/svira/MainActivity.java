@@ -1,4 +1,4 @@
-package com.sviragold;
+package com.svira;
 import android.os.Bundle; // here
 
 import com.facebook.react.ReactActivity;
