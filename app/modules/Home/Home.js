@@ -23,7 +23,7 @@ import { SafeView } from "./Home.Style.js";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import AviraInfo from "./Components/AviraInfo.Component.js";
 import { HomePageAction } from "../../redux/actions/authActons.js";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import {
   applyFilterAction,
   clearAllFilter,
@@ -81,8 +81,8 @@ const Home = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView  >
-      <StatusBar backgroundColor={"#db9b7b"} barStyle='dark-content' />
+    <>
+    <CustomStatusBar backgroundColor="#db9b7b" />
       {/* end---modal */}
       <AviraHeader navigation={navigation} />
       <UpdateAppModal />
@@ -287,7 +287,7 @@ const Home = ({ navigation }) => {
         <SocialLinks />
         <AviraInfo />
       </ScrollView>
-    </SafeAreaView>
+      </>
   );
 };
 

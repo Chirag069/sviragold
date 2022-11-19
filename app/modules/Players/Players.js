@@ -20,7 +20,7 @@ import AviraHeader from "../../components/aviraHeader.Component.js";
 import SeachModal from "../../components/SeachModal.Component.js";
 import GuestUserModal from "../../components/GuestUserModal.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import OrderItem from "../Players/Components/OrderItem.Component.js";
 import { sc, vsc, msc } from "../../appConstants/Utils";
 
@@ -43,7 +43,8 @@ const Players = ({ navigation }) => {
   };
 
   return (
-    <SafeArea bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <GuestUserModal navigation={navigation} />
@@ -165,7 +166,7 @@ const Players = ({ navigation }) => {
           />
         </>
       )}
-    </SafeArea>
+    </View>
   );
 };
 

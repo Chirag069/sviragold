@@ -11,6 +11,8 @@ import {
   TextInput,
   FlatList,
   Pressable,
+  SafeAreaView,
+  SafeAreaViewBase,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Modal } from "react-native";
@@ -25,7 +27,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { SafeArea } from "./Poll.Style.js";
 import { useSelector, useDispatch } from "react-redux";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import SeachModal from "../../components/SeachModal.Component.js";
 
@@ -342,7 +344,8 @@ const Polls = ({ navigation, route }) => {
   };
 
   return (
-    <SafeArea bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <Spinner
@@ -508,14 +511,16 @@ const Polls = ({ navigation, route }) => {
         transparent={true}
         style={{ backgroundColor: "#FFFFFF", position: "relative" }}
       >
+        <CustomStatusBar backgroundColor="#db9b7b" />
         <TouchableOpacity
           onPress={() => {
             setImageViewShow(false);
           }}
           style={{
-            top: 10,
+            top: Platform.OS === "ios" ? 60 : 20,
             zIndex: 5,
             position: "absolute",
+            // left: Dimensions.get('window').width - (Platform.OS === 'ios' ? 60 : 50),
             right: vsc(20),
           }}
         >
@@ -523,7 +528,7 @@ const Polls = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <ImageViewer backgroundColor={"#FFFFFF"} imageUrls={images} />
-        <View style={{ backgroundColor: "#FFFFFF" }}>
+        <SafeAreaView style={{ backgroundColor: "#FFFFFF" }}>
           <Image
             style={{
               width: sc(70),
@@ -538,7 +543,7 @@ const Polls = ({ navigation, route }) => {
                 : require("../../assets/empty.jpg")
             }
           />
-        </View>
+        </SafeAreaView>
       </Modal>
 
       {/* sizeModal toggle::end */}
@@ -1255,7 +1260,7 @@ const Polls = ({ navigation, route }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </SafeArea>
+    </View>
   );
 };
 

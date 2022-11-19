@@ -11,7 +11,7 @@ import SeachModal from "../../components/SeachModal.Component.js";
 import GuestUserModal from "../../components/GuestUserModal.js";
 
 import LikeItem from "./Components/LikeItem.Compomnent.js";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import { sc, vsc, msc } from "../../appConstants/Utils";
 
 
@@ -39,8 +39,10 @@ const Like = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
-        
+    
+
+    <View style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+        <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <GuestUserModal navigation={navigation} />
@@ -142,7 +144,7 @@ const Like = ({ navigation }) => {
         </>
       )}
     
-    </SafeAreaView>
+    </View>
   );
 };
 

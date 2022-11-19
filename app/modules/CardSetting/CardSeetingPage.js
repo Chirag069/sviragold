@@ -7,18 +7,21 @@ import {
   TouchableOpacity,
   TextInput,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from "react-native";
 import { useSelector } from "react-redux";
 import { SafeArea } from "./Players.Style.js";
 import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import { addCardItemsAction } from "../../redux/actions/productActions.js";
 
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { sc, vsc, msc } from "../../appConstants/Utils";
+import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 
 const CardSetting = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -47,12 +50,16 @@ const CardSetting = ({ navigation }) => {
   };
 
   return (
-    <SafeArea bgColor={"#F6F7FB"}>
+    <>
+      {/* <SafeArea bgColor={"#F6F7FB"}> */}
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
+      <SeachModal />
+      <GuestUserModal />
       <Spinner
         visible={false}
         textContent={"Loading..."}
-        textStyle={{ color: "#fff", fontSize: vsc(14)}}
+        textStyle={{ color: "#fff", fontSize: vsc(14) }}
         overlayColor="rgba(0,0,0, 0.5)"
       />
       <View
@@ -74,7 +81,11 @@ const CardSetting = ({ navigation }) => {
 
           <View>
             <Text
-              style={{ color: "#db9b7b", fontWeight: "normal", fontSize: vsc(19) }}
+              style={{
+                color: "#db9b7b",
+                fontWeight: "normal",
+                fontSize: vsc(19),
+              }}
             >
               Settings Card Items
             </Text>
@@ -94,7 +105,9 @@ const CardSetting = ({ navigation }) => {
             marginTop: vsc(15),
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}>
+          <Text
+            style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}
+          >
             {" "}
             Select Item Size
           </Text>
@@ -158,7 +171,9 @@ const CardSetting = ({ navigation }) => {
             marginTop: vsc(15),
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}>
+          <Text
+            style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}
+          >
             {" "}
             Select Group Size
           </Text>
@@ -223,12 +238,16 @@ const CardSetting = ({ navigation }) => {
             marginTop: vsc(15),
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}>
+          <Text
+            style={{ fontWeight: "bold", fontSize: vsc(17), color: "#000000" }}
+          >
             {" "}
             Write Your Remark:
           </Text>
         </View>
-        <View style={{ flex: 0.7, marginTop: vsc(10), paddingHorizontal: vsc(30) }}>
+        <View
+          style={{ flex: 0.7, marginTop: vsc(10), paddingHorizontal: vsc(30) }}
+        >
           <TextInput
             underlineColorAndroid="transparent"
             placeholder="write your remark"
@@ -251,32 +270,34 @@ const CardSetting = ({ navigation }) => {
         </View>
         <View style={{ paddingBottom: vsc(50) }} />
       </ScrollView>
-
-      <View
-        style={{
-          backgroundColor: "#FFFFFF",
-          justifyContent: "space-around",
-          flexDirection: "row",
-          alignItems: "center",
-          paddingVertical: vsc(10),
-        }}
-      >
-        <TouchableOpacity
-          onPress={applySetting}
+      <SafeAreaView>
+        <View
           style={{
-            backgroundColor: "#db9b7b",
-            paddingVertical: vsc(13),
-            paddingHorizontal: vsc(14),
-            borderRadius: vsc(6),
-            flex: 0.7,
-            alignSelf: "center",
+            backgroundColor: "#FFFFFF",
+            justifyContent: "space-around",
+            flexDirection: "row",
             alignItems: "center",
+            paddingVertical: vsc(10),
           }}
         >
-          <Text style={{ color: "#FFFFFF", fontSize: vsc(14) }}>Apply</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeArea>
+          <TouchableOpacity
+            onPress={applySetting}
+            style={{
+              backgroundColor: "#db9b7b",
+              paddingVertical: vsc(13),
+              paddingHorizontal: vsc(14),
+              borderRadius: vsc(6),
+              flex: 0.7,
+              alignSelf: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: vsc(14) }}>Apply</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </>
+    // </SafeArea>
   );
 };
 

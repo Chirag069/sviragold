@@ -12,6 +12,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -24,6 +25,8 @@ import { setBgColor } from "../../redux/actions/themeActions.js";
 import Spinner from "react-native-loading-spinner-overlay";
 import { signInAction } from "../../redux/actions/authActons.js";
 import { sc, vsc, msc } from "../../appConstants/Utils";
+import {  SafeAreaProvider, useSafeAreaInsets} from 'react-native-safe-area-context';
+
 
 
 
@@ -52,9 +55,30 @@ const SignIn = ({ navigation }) => {
     dispatch(setBgColor("#db9b7b"));
   }
 
+  const CustomStatusBar = (
+    {
+      backgroundColor,
+      barStyle = "dark-content",
+      //add more props StatusBar
+    }
+  ) => { 
+     
+     const insets = useSafeAreaInsets();
+  
+     return (
+  
+       <View style={{ height: insets.top, backgroundColor }}>
+          <StatusBar
+            animated={true}
+            backgroundColor={backgroundColor}
+            barStyle={barStyle} />
+       </View>
+     );
+  }
+
   return (
     <>
-      <StatusBar  backgroundColor={"#FFFEFD"} barStyle="light-content" />
+
 
       <Spinner
         visible={LoginInLoading}
@@ -63,7 +87,7 @@ const SignIn = ({ navigation }) => {
         overlayColor="rgba(0,0,0, 0.5)"
       />
 
-      <View style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
         <ScrollView
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
@@ -324,7 +348,7 @@ const SignIn = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </>
   );
 };

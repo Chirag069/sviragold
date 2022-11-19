@@ -32,6 +32,7 @@ import RemarkModal from "./Components/RemarkModal.Component";
 import SIzeSelectionModal from "./Components/SIzeSelectionModal.Component";
 import GroupModelSelectoion from "./Components/GroupModelSelectoion.Component";
 import PlaceOrderModal from "./Components/PlaceOrderModal";
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 
 import { sc, vsc, msc } from "../../appConstants/Utils";
 
@@ -97,7 +98,8 @@ const More = ({ navigation }) => {
   // console.log(cardItems);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+    <View style={{ flex: 1, backgroundColor: "#FFFEFD" }}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <GuestUserModal navigation={navigation} />
@@ -247,7 +249,7 @@ const More = ({ navigation }) => {
           />
         </>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

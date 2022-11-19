@@ -18,6 +18,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { sc, vsc, msc } from "../../appConstants/Utils";
 import SeachModal from "../../components/SeachModal.Component.js";
 import GuestUserModal from "../../components/GuestUserModal.js";
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 
 const Score = ({ navigation }) => {
   const {
@@ -53,7 +54,8 @@ const Score = ({ navigation }) => {
   };
 
   return (
-    <SafeArea bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <GuestUserModal navigation={navigation} />
@@ -342,7 +344,7 @@ const Score = ({ navigation }) => {
           />
         </View>
       </ScrollView>
-    </SafeArea>
+    </View>
   );
 };
 

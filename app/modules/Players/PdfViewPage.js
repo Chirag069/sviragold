@@ -27,7 +27,7 @@ import NetInfo from "@react-native-community/netinfo";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import { sc, vsc, msc } from "../../appConstants/Utils";
 
 const PdfViewPage = ({ navigation, route }) => {
@@ -146,7 +146,8 @@ const PdfViewPage = ({ navigation, route }) => {
   };
 
   return (
-    <SafeArea bgColor={"#F6F7FB"}>
+    <View bgColor={"#F6F7FB"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <Spinner
         visible={loading}
@@ -308,7 +309,7 @@ const PdfViewPage = ({ navigation, route }) => {
           </View>
         </View>
       )}
-    </SafeArea>
+    </View>
   );
 };
 

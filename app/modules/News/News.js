@@ -25,7 +25,7 @@ import {
   applyFilterAction,
 } from "../../redux/actions/productActions";
 import { FAB } from "react-native-paper";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import { stoneValueChangeAction } from "../../redux/actions/authActons";
 
 import styled from "styled-components/native";
@@ -63,7 +63,8 @@ const News = ({ navigation }) => {
   };
 
   return (
-    <SafeView bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <SeachModal navigation={navigation} />
       <GuestUserModal navigation={navigation} />
@@ -611,7 +612,7 @@ const News = ({ navigation }) => {
           </Button>
         </View>
       </View>
-    </SafeView>
+    </View>
   );
 };
 

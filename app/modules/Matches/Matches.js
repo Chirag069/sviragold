@@ -40,6 +40,7 @@ import ProductItemRowHorizotal from "./Components/ProductItemRowHorizotal";
 import ProductItemRowSingal from "./Components/ProductItemRowSingal.js";
 import ProductItem2LongRow from "./Components/ProductItem2LongRow.js";
 import CustomButton from "../../Custom/CustomButton.js";
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 
 import { sc, vsc } from "../../appConstants/Utils";
 
@@ -174,7 +175,8 @@ const Matches = ({ navigation }) => {
   //   : [];
 
   return (
-    <SafeView bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       {/* Header */}
       <Spinner
         visible={likeItemServerLoading || incAndDecCardServerLoading}
@@ -766,7 +768,7 @@ const Matches = ({ navigation }) => {
         />
       ) : null}
       {/* poduct list items */}
-    </SafeView>
+    </View>
   );
 };
 

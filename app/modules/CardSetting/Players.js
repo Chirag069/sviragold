@@ -14,7 +14,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { getOrderListAction } from "../../redux/actions/productActions.js";
-
+import CustomStatusBar from "../../Custom/CustomStatusBar.js";
 import AviraHeader from "../../components/aviraHeader.Component.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
@@ -41,7 +41,8 @@ const Players = ({ navigation }) => {
   };
 
   return (
-    <SafeArea bgColor={"#FFFEFD"}>
+    <View bgColor={"#FFFEFD"}>
+      <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
       <Spinner
         visible={serverEditOrderServerLoadingError}
@@ -161,7 +162,7 @@ const Players = ({ navigation }) => {
           />
         </>
       )}
-    </SafeArea>
+    </View>
   );
 };
 

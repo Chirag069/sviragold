@@ -6,7 +6,7 @@ import { colors } from "../../theme/colors.js";
 
 export const styles = StyleSheet.create({
   flatlistLastContextShow: {
-    paddingVertical: 25,
+    paddingVertical: 25,  
   },
 });
 

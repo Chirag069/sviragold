@@ -38,7 +38,7 @@ const TabNavigation = () => {
 
   function MyTabBar({ state, descriptors, navigation }) {
     return (
-      <SafeAreaView style={{backgroundColor:'#db9b7b'}}>
+      <SafeAreaView style={{backgroundColor:'#db9b7b',  flex: Platform.OS === 'ios' ? 0.1 : 0, }}>
       <View 
         style={{
           flexDirection: "row",
@@ -280,7 +280,7 @@ const TabNavigation = () => {
           return <>{setItenValue(label, isFocused)}</>;
         })}
       </View>
-      </SafeAreaView>
+       </SafeAreaView>
     );
   }
 

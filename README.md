@@ -7,12 +7,10 @@ emulator -avd small_34
 
 ----------- changes -----------
 
-1. product list shadow add an photo size change
-2. sign in screen status bar change
-3. page slide animation
+
 4. customer order pdf downlod permission set
 5. app name change
-6. zoom image change
+
 
 ---------------- Changed -------
 1. search model amd Guest model  change
@@ -21,5 +19,8 @@ emulator -avd small_34
 4. status bar change
 5. http to https change in all api
 6. splash screen and app icon change
+7. product list shadow add an photo size change
+8. zoom image change
+9. status bar change
 
 

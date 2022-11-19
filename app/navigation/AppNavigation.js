@@ -15,6 +15,7 @@ import ContactUs from "../modules/ContactUs/ContactUs.js";
 import PdfViewPage from "../modules/Players/PdfViewPage.js";
 import CardSetting from "../modules/CardSetting/CardSeetingPage";
 import { useSelector } from "react-redux";
+import { StatusBar } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const AppNavigation = () => {
 
   return (
     <StackNavigationContainer bgColor={bgColorset}>
+
       <Stack.Navigator>
             <Stack.Screen
               name="Home"
