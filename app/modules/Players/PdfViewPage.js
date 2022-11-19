@@ -14,7 +14,8 @@ import {
 import Pdf from "react-native-pdf";
 import RNFetchBlob from "react-native-blob-util";
 import Share from "react-native-share";
-
+import SeachModal from "../../components/SeachModal.Component.js";
+import GuestUserModal from "../../components/GuestUserModal.js";
 import { useSelector } from "react-redux";
 import { SafeArea } from "./Players.Style.js";
 import { useDispatch } from "react-redux";
@@ -149,6 +150,8 @@ const PdfViewPage = ({ navigation, route }) => {
     <View bgColor={"#F6F7FB"}>
       <CustomStatusBar backgroundColor="#db9b7b" />
       <AviraHeader navigation={navigation} />
+      <SeachModal navigation={navigation} />
+      <GuestUserModal navigation={navigation} />
       <Spinner
         visible={loading}
         textContent={"Loading..."}
