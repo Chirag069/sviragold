@@ -79,6 +79,90 @@ const PdfViewPage = ({ navigation, route }) => {
 
           var downalodFileName = `SviraGoldAppOrder_${downaldoFileString}.pdf`;
 
+          RNFetchBlob.config({
+            fileCache: true,
+            addAndroidDownloads: {
+              useDownloadManager: true,
+              notification: true,
+              mediaScannable: true,
+              title: downalodFileName,
+              path: `${dirs.DownloadDir}/${downaldoFileString}.pdf`,
+            },
+          })
+            .fetch("GET", `${route.params.pdfUrl}`, {
+              "If-Range": userToken,
+            })
+            .then((res) => {
+              setLoading(false);
+              ToastAndroid.show(
+                `${downalodFileName} PDF successfully downloaded`,
+                ToastAndroid.SHORT
+              );
+            })
+            .catch((e) => {
+              setLoading(false);
+              NetInfo.fetch().then((state) => {
+                if (state.isConnected) {
+                  Toast.show({
+                    text1: "Something went wrong try again",
+                    visibilityTime: 3000,
+                    autoHide: true,
+                    position: "bottom",
+                    type: "error",
+                  });
+                } else {
+                  Toast.show({
+                    text1: "Check your Internet Connection",
+                    visibilityTime: 3000,
+                    autoHide: true,
+                    position: "bottom",
+                    type: "error",
+                  });
+                }
+              });
+            });
+        } else {
+          Toast.show({
+            text1: "Check your Internet Connection",
+            visibilityTime: 3000,
+            autoHide: true,
+            position: "bottom",
+            type: "error",
+          });
+        }
+      });
+    } else {
+      Alert.alert(
+        "Permission Denied!",
+        "You need to give storage permission to download the file",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => Linking.openSettings() },
+        ]
+      );
+    }
+  };
+
+  const actualDownloadios = () => {
+    if (download) {
+      NetInfo.fetch().then((state) => {
+        if (state.isConnected) {
+          setLoading(true);
+          const { dirs } = RNFetchBlob.fs;
+
+          var downaldoFileString =
+            route.params && route.params.item && route.params.item.order_no
+              ? route.params.item.order_no
+              : route.params && route.params.item && route.params.item.id
+              ? route.params.item.id
+              : "OrderId";
+
+          var downalodFileName = `SviraGoldAppOrder_${downaldoFileString}.pdf`;
+
           const dirToSave = Platform.OS == 'ios' ? dirs.DocumentDir : dirs.DownloadDir
         const configfb = {
             fileCache: true,
@@ -218,6 +302,7 @@ const PdfViewPage = ({ navigation, route }) => {
           <TouchableOpacity
             style={{ marginRight: sc(15) }}
             onPress={() => {
+              Platform.OS === "ios"?actualDownloadios():
               actualDownload();
             }}
           >
