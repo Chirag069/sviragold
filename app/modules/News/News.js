@@ -507,7 +507,7 @@ const News = ({ navigation }) => {
             ) : null}
 
             {filterTitle === "SUB CATEGORY" ? (
-              <ScrollView contentContainerStyle={{ paddingBottom: vsc(300) }}>
+              <ScrollView contentContainerStyle={{ paddingBottom: Platform.OS === 'ios'? vsc(200): vsc(300) }}>
                 <View
                   style={{
                     flexDirection: "row",
@@ -570,7 +570,8 @@ const News = ({ navigation }) => {
         style={{
           position: "absolute",
           right: 0,
-          bottom: Platform.OS === "ios" ? 15 : 0,
+          // bottom:-25,
+          bottom: Platform.OS === "ios" ? 15 : -25,
           flexDirection: "row",
           backgroundColor: "#F6F7FB",
           borderTopWidth: vsc(1),

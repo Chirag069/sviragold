@@ -8,8 +8,10 @@ emulator -avd small_34
 ----------- changes -----------
 
 
-4. customer order pdf downlod permission set
-5. app name change
+1. customer order pdf downlod permission set check
+2. app name change
+3. android filter clear all apply section check
+4. android sign in and contect up page status bar check
 
 
 ---------------- Changed -------
@@ -22,5 +24,6 @@ emulator -avd small_34
 7. product list shadow add an photo size change
 8. zoom image change
 9. status bar change
+10. subcategory change
 
 
