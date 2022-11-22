@@ -42,23 +42,24 @@ const PdfViewPage = ({ navigation, route }) => {
 
   useEffect(() => {
     (async () => {
-      if(Platform.OS === "android"){
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          setDownload(true);
-        } else {
-          Alert.alert(
-            "Permission Denied!",
-            "You need to give storage permission to download the file"
+      if (Platform.OS === "ios") {
+        setDownload(true);
+      }
+      if (Platform.OS === "android") {
+        try {
+          const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
           );
-        }
-      } catch (err) {}
-    }
-
-
+          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            setDownload(true);
+          } else {
+            Alert.alert(
+              "Permission Denied!",
+              "You need to give storage permission to download the file"
+            );
+          }
+        } catch (err) {}
+      }
     })();
   }, []);
 
@@ -78,21 +79,44 @@ const PdfViewPage = ({ navigation, route }) => {
 
           var downalodFileName = `SviraGoldAppOrder_${downaldoFileString}.pdf`;
 
-          RNFetchBlob.config({
+          const dirToSave = Platform.OS == 'ios' ? dirs.DocumentDir : dirs.DownloadDir
+        const configfb = {
             fileCache: true,
-            addAndroidDownloads: {
-              useDownloadManager: true,
-              notification: true,
-              mediaScannable: true,
-              title: downalodFileName,
-              path: `${dirs.DownloadDir}/${downaldoFileString}.pdf`,
+            useDownloadManager: true,
+            notification: true,
+            mediaScannable: true,
+            title: downalodFileName,
+            path: `${dirToSave}/${downaldoFileString}.pdf`,
+        }
+        const configOptions = Platform.select({
+            ios: {
+                fileCache: configfb.fileCache,
+                title: configfb.title,
+                path: configfb.path,
+                appendExt: 'pdf',
             },
-          })
+            android: configfb,
+        });
+
+          RNFetchBlob.config(configOptions)
             .fetch("GET", `${route.params.pdfUrl}`, {
               "If-Range": userToken,
             })
             .then((res) => {
               setLoading(false);
+              if (Platform.OS === "ios") {
+                RNFetchBlob.fs.writeFile(configfb.path, res.data, 'base64');
+                RNFetchBlob.ios.previewDocument(configfb.path);
+            }
+            if (Platform.OS == 'android') {
+                showSnackbar('File downloaded');
+            }
+              Platform.OS === "ios"?
+              Toast.show({
+                text1:"PDF successfully downloaded",
+                text2: `${downalodFileName} `,
+                position:"bottom"
+            }):
               ToastAndroid.show(
                 `${downalodFileName} PDF successfully downloaded`,
                 ToastAndroid.SHORT
@@ -146,6 +170,7 @@ const PdfViewPage = ({ navigation, route }) => {
     }
   };
 
+
   return (
     <View bgColor={"#F6F7FB"}>
       <CustomStatusBar backgroundColor="#db9b7b" />
@@ -179,7 +204,11 @@ const PdfViewPage = ({ navigation, route }) => {
 
           <View>
             <Text
-              style={{ color: "#db9b7b", fontWeight: "normal", fontSize: vsc(19) }}
+              style={{
+                color: "#db9b7b",
+                fontWeight: "normal",
+                fontSize: vsc(19),
+              }}
             >
               ORDER PDF
             </Text>
@@ -209,6 +238,7 @@ const PdfViewPage = ({ navigation, route }) => {
                     })
                     .then((res) => {
                       res.readFile("base64").then((basepdf) => {
+
                         let shareOptionsUrl = {
                           title: "App Pdf",
                           message: "PDF",
@@ -216,6 +246,7 @@ const PdfViewPage = ({ navigation, route }) => {
                           subject: "Share information from your application",
                         };
                         Share.open(shareOptionsUrl);
+
                       });
                     })
                     .catch((e) => {
@@ -252,7 +283,11 @@ const PdfViewPage = ({ navigation, route }) => {
               });
             }}
           >
-            <MaterialCommunityIcons color="#db9b7b" name="share" size={sc(30)} />
+            <MaterialCommunityIcons
+              color="#db9b7b"
+              name="share"
+              size={sc(30)}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -304,7 +339,9 @@ const PdfViewPage = ({ navigation, route }) => {
                 <Entypo color="#000000" name="emoji-sad" size={vsc(55)} />
               </View>
               <View>
-                <Text style={{ top: vsc(10), color: "#000000", fontSize: vsc(17) }}>
+                <Text
+                  style={{ top: vsc(10), color: "#000000", fontSize: vsc(17) }}
+                >
                   something is wrong try again
                 </Text>
               </View>

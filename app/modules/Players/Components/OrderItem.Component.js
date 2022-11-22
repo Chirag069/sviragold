@@ -22,7 +22,7 @@ const OrderItem = ({ item, navigation }) => {
     navigation.navigate("PDF", {
       item: item,
       itemId: item.id,
-      pdfUrl: `http://rd.ragingdevelopers.com/svira/svira1api/order_temp/order_view/${item.id}`,
+      pdfUrl: `https://rd.ragingdevelopers.com/svira/svira1api/order_temp/order_view/${item.id}`,
     });
   };
 
