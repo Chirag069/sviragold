@@ -63,6 +63,12 @@ const PdfViewPage = ({ navigation, route }) => {
     })();
   }, []);
 
+
+  
+  
+
+
+
   const actualDownload = () => {
     if (download) {
       NetInfo.fetch().then((state) => {
@@ -311,6 +317,15 @@ const PdfViewPage = ({ navigation, route }) => {
           <TouchableOpacity
             style={{ marginRight: sc(15), marginLeft: sc(10) }}
             onPress={() => {
+
+
+  
+
+
+
+
+
+              
               NetInfo.fetch().then((state) => {
                 if (state.isConnected) {
                   const { dirs } = RNFetchBlob.fs;
@@ -322,7 +337,31 @@ const PdfViewPage = ({ navigation, route }) => {
                       Authorization: `Bearer ${userToken}`,
                     })
                     .then((res) => {
-                      res.readFile("base64").then((basepdf) => {
+                      res.readFile('base64').then((basepdf) => {
+                       const title= "App Pdf"
+                       const  message= "PDF"
+                      const  url= `data:application/pdf;base64,${basepdf}`
+                      const  subject= "Share information from your application"
+
+                        const options = Platform.select({
+                          ios: {
+                            activityItemSources: [
+                              {
+                                // For sharing url with custom title.
+                                placeholderItem: { type: 'url', content: url },
+                                item: {
+                                  default: { type: 'url', content: url },
+                                },
+                                subject: {
+                                  default: subject,
+                                },
+                                linkMetadata: { originalUrl: url, message, title },
+                              },
+                            ],
+                          },
+                         
+                        });
+                      
 
                         let shareOptionsUrl = {
                           title: "App Pdf",
@@ -330,8 +369,9 @@ const PdfViewPage = ({ navigation, route }) => {
                           url: `data:application/pdf;base64,${basepdf}`,
                           subject: "Share information from your application",
                         };
-                        Share.open(shareOptionsUrl);
 
+                        Share.open(shareOptionsUrl);
+                       
                       });
                     })
                     .catch((e) => {
