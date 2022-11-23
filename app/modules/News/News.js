@@ -507,7 +507,7 @@ const News = ({ navigation }) => {
             ) : null}
 
             {filterTitle === "SUB CATEGORY" ? (
-              <ScrollView contentContainerStyle={{ paddingBottom: Platform.OS === 'ios'? vsc(200): vsc(300) }}>
+              <ScrollView contentContainerStyle={{ paddingBottom: Platform.OS === 'ios'? vsc(0): vsc(300) }}>
                 <View
                   style={{
                     flexDirection: "row",
